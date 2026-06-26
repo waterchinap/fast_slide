@@ -1,0 +1,35 @@
+---
+import Slide from '../components/Slide.astro';
+import '../../node_modules/reveal.js/dist/reveal.css';
+import '../../node_modules/reveal.js/dist/theme/black.css';
+
+// 1. 直接获取数据（在构建时或服务器端执行）
+const {title = 'Qieman Evaluation'} = Astro.props;
+---
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+      <slot /> 
+      </div>
+    </div>
+
+    <script>
+      import Reveal from 'reveal.js';
+      // 3. 客户端初始化
+      const deck = new Reveal();
+      deck.initialize({
+          hash: true,
+          center: true,
+          autoSlide: 8000,
+          loop: true,
+           });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+---
+// Slide.astro
+const { item } = Astro.props;
+
+// 颜色逻辑依然可以写在这里
+const colorMap = { 'LOW': '#00ff00', 'MID': '#ffff00', 'HIGH': '#ff5555' };
+const titleColor = colorMap[item.group] || '#ffffff';
+
+// 过滤掉不需要显示的字段
+const exclude = ['indexName', 'indexCode', 'group', 'date', 'scoreBy', 'source', 'category', 'fund', 'allFund', 'fundCodes', 'allFundCodes'];
+---
+
+<section>
+  <h2 style={`color: ${titleColor};`}>
+    {item.indexName} ({item.indexCode})
+  </h2>
+  <div class="metrics-grid">
+    {Object.entries(item).map(([key, value]) => (
+      !exclude.includes(key) && (
+        <div class="metric-item">
+          <span class="label">{key}:</span>
+          <span class="value">
+            {typeof value === 'number' && value < 1 ? (value * 100).toFixed(2) + '%' : value}
+          </span>
+        </div>
+      )
+    ))}
+  </div>
+</section>
+
+<style>
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    font-size: 0.7em;
+  }
+  .metric-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+    padding: 5px 0;
+  }
+  .label { color: #999;  }
+  .value { font-weight: bold; }
+</style>

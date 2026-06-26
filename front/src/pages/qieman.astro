@@ -1,0 +1,12 @@
+---
+import Slide from '../components/Slide.astro';
+import RevealLayout from '../layouts/RevealLayout.astro';
+
+// 1. 直接获取数据（在构建时或服务器端执行）
+const response = await fetch('http://127.0.0.1:8000/api/slides');
+const { idxEvalList } = await response.json();
+---
+
+<RevealLayout title = 'Qieman' >
+        {idxEvalList.map((item) => <Slide item={item} />)}
+</RevealLayout>

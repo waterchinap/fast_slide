@@ -1,0 +1,64 @@
+[project]
+name = "fast-slide"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.135.2",
+    "loguru>=0.7.3",
+    "playwright>=1.58.0",
+    "uvicorn>=0.42.0",
+]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
+
+[tool.basedpyright]
+# 类型检查模式：basic/standard/strict
+typeCheckingMode = "basic"
+
+# 忽略未使用的导入（常见于 __init__.py 或临时调试）
+reportUnusedImport = false
+
+# 忽略未使用的变量（临时变量或调试代码）
+reportUnusedVariable = false
+
+# 忽略未使用的函数/类（可能被外部调用）
+reportUnusedFunction = false
+reportUnusedClass = false
+
+# 忽略通配符导入（某些第三方库推荐用法）
+reportWildcardImportFrom = false
+
+# 忽略隐式 Optional 类型（向后兼容代码）
+reportImplicitOptional = false
+
+# 忽略缺少文档字符串（非库项目）
+reportMissingDocstring = false
+
+# 忽略导入顺序（使用 isort 等工具管理）
+reportOrderImports = false
+
+# 忽略未类型化的函数调用（遗留代码或第三方库）
+reportFunctionMemberAccess = false
+
+# 忽略未类型化的装饰器
+reportUntypedFunctionDecorator = false
+reportUntypedClassDecorator = false
+reportUntypedMethodDecorator = false
+
+# 忽略 Any 类型相关警告
+reportAny = false
+reportMissingTypeArgument = false
+
+# 忽略可选成员访问警告（常见于动态属性）
+reportOptionalMemberAccess = false
+
+# 忽略参数类型不匹配（宽松模式）
+reportArgumentType = false
+
+# 忽略返回值类型不匹配
+reportReturnType = false
+
